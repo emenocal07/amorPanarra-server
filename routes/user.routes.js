@@ -29,7 +29,7 @@ router.get('/getOneUser/:user_id', (req, res) => {
 router.put('/edit/:user_id', (req, res) => {
     const { user_id } = req.params
     const { username, userlastname, email, phone, name, number, postCode, city, country } = req.body
-    console.log(req.body)
+
 
     const address = {
         street: {
@@ -66,8 +66,29 @@ router.put('/cart/addProduct/:product_id', isAuthenticated, (req, res) => {
 
     Product
         .findById(product_id)
-        .then(foundProduct => User.findByIdAndUpdate(_id, { $push: { productsCart: { product: foundProduct } } }, { new: true }))
-        .then(response => res.json(response))
+        .then(foundProduct => {
+            const fullProduct = { product: foundProduct._id }
+            return User.findByIdAndUpdate(_id, { $push: { productsCart: fullProduct } }, { new: true })
+        })
+        .then(response => res.json(response.productsCart))
+        .catch(err => res.status(500).json(err))
+})
+
+
+//GET PRODUCT FROM USER-CART
+router.get('/cart/getCartProducts', isAuthenticated, (req, res) => {
+
+    const { _id } = req.payload
+
+    User
+        .findById(_id)
+        .select('productsCart')
+        .populate({
+            path: "productsCart.product"
+        })
+        .then(response => {
+            res.json(response)
+        })
         .catch(err => res.status(500).json(err))
 })
 
@@ -77,26 +98,11 @@ router.put('/cart/removeProduct/:product_id', isAuthenticated, (req, res) => {
     const { product_id } = req.params
     const { _id } = req.payload
 
-    Product
-        .findById(product_id)
-        .then(foundProduct => User.findByIdAndUpdate(_id, { $pull: { productsCart: { product: foundProduct } } }, { new: true }))
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
-
-//GET PRODUCT FROM USER-CART
-router.get('/cart/getCartProducts', isAuthenticated, (req, res) => {
-    //const { product_id } = req.params
-    const { _id } = req.payload
-
     User
-        .findById(_id)
-        .select('productsCart')
-        .then(response => res.json(response))
+        .findByIdAndUpdate(_id, { $pull: { productsCart: { product: product_id } } })
+        .then(response => res.json({ message: 'OK' }))
         .catch(err => res.status(500).json(err))
 })
-
-
 
 
 module.exports = router
