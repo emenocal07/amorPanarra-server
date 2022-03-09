@@ -2,7 +2,7 @@ const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User.model')
 const jwt = require('jsonwebtoken')
-const {isAuthenticated} = require('../middleware/jwt.middleware')
+const { isAuthenticated } = require('../middleware/jwt.middleware')
 const saltRounds = 10
 
 //REGISTER (CREATE USER)
@@ -100,7 +100,7 @@ router.post('/login', (req, res) => {
 
 
 //VERIFY JWT FROM USER TO DB
-router.get('/verify', isAuthenticated, (req, res) =>{
+router.get('/verify', isAuthenticated, (req, res) => {
     res.status(200).json(req.payload)
 })
 
