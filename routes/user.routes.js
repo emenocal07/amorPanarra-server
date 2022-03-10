@@ -30,7 +30,6 @@ router.put('/edit/:user_id', (req, res) => {
     const { user_id } = req.params
     const { username, userlastname, email, phone, name, number, postCode, city, country } = req.body
 
-
     const address = {
         street: {
             name,
@@ -48,7 +47,7 @@ router.put('/edit/:user_id', (req, res) => {
 })
 
 
-//DELETE
+//DELETE USER
 router.delete('/delete/:user_id', (req, res) => {
     const { user_id } = req.params
 
@@ -101,6 +100,16 @@ router.put('/cart/removeProduct/:product_id', isAuthenticated, (req, res) => {
     User
         .findByIdAndUpdate(_id, { $pull: { productsCart: { _id: product_id } } })
         .then(response => res.json({ message: 'OK' }))
+        .catch(err => res.status(500).json(err))
+})
+
+// REMOVE ALL PRODUCT FROM USER-CART
+router.put('/cart/removeProducts', isAuthenticated, (req, res) => {
+    const { _id } = req.payload
+
+    User
+        .findByIdAndUpdate(_id, { $set: { productsCart: [] } }, { multi: true })
+        .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
