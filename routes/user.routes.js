@@ -99,7 +99,7 @@ router.put('/cart/removeProduct/:product_id', isAuthenticated, (req, res) => {
     const { _id } = req.payload
 
     User
-        .findByIdAndUpdate(_id, { $pull: { productsCart: { product: product_id } } })
+        .findByIdAndUpdate(_id, { $pull: { productsCart: { _id: product_id } } })
         .then(response => res.json({ message: 'OK' }))
         .catch(err => res.status(500).json(err))
 })
