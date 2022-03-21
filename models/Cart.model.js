@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose")
 const cartSchema = new Schema(
     {
         user: {
-            type: Schema.Types.ObjectId,  // EL USER ES NECESARIO?
+            type: Schema.Types.ObjectId,
             ref: 'User'
         },
 
