@@ -2,7 +2,7 @@
 
 ## Description:
 
-AmorPanarra is the third and final project of the Ironhack Web Development Bootcamp. A project that has been done by four hands by Anna Porras and Ernesto Espinoza. The project consists of an Online Bakery, an e-commerce where we put into practice what we learned throughout the bootcamp to get a Fullstack application. Amor Panarra is an online bakery with carefully selected and quality products for bread lovers.
+AmorPanarra is the third and final project of the Ironhack Web Development Bootcamp. A project that has been done by four hands by Anna Porras and Ernesto Espinoza. The project consists of an Online Bakery, an e-commerce where we put into practice what we learned throughout the bootcamp to get a Fullstack application. Amor Panarra is an online bakery with carefully selected and quality products for bread lovers. Take a look at it at: https://amorpanarra.netlify.app/
 
 ## Technologies used:
 SERVER: We used Express/Node for the server part, from where we created the relevant models and routes.
@@ -30,12 +30,12 @@ In terms of layout we have used Bootstrap and CSS.
 | POST / PUT   | /inicio-sesion     | Handle login and register page   |    |
 | GET          | /perfiles/:id      | Render user profile                        |    |
 | POST         | /perfiles/:id      | Handle user profile (edit)    |    |
-| DELETE       | /perfiles/:id      | Handle user profile (delete)    |  U+2705  |
+| DELETE       | /perfiles/:id      | Handle user profile (delete)    |  :heavy_check_mark:  |
 | GET          | /productos         | List of all products  |    |
-| GET          | /perfiles          | Render all users's profiles  | U+2705   |
-| PUT          | /                  | Modal to create product form | U+2705   |
+| GET          | /perfiles          | Render all users's profiles  | :heavy_check_mark:   |
+| PUT          | /                  | Modal to create product form | :heavy_check_mark:   |
 | GET          | /productos/:id     | Render product details   |  |
-| GET          | /productos/:id/editar   | Render edit page form   |  U+2705  |
-| POST / DELETE | /productos/:id/editar   | Handle edit and delete page form   |  U+2705  |
+| GET          | /productos/:id/editar   | Render edit page form   |  :heavy_check_mark:  |
+| POST / DELETE | /productos/:id/editar   | Handle edit and delete page form   |  :heavy_check_mark: |
 | GET       | /detalles-pedido   | Render products in cart    |    |
 | GET       | /finalizar-compra  | Render payment page    |    |
