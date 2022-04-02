@@ -4,14 +4,14 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, 'Debe introducir un nombre obligatoriamente'],
       minlength: 2,
       maxlength: 20,
       trim: true
     },
     userlastname: {
       type: String,
-      required: true,
+      required: [true, 'Debe introducir un apellido obligatoriamente'],
       minlength: 2,
       maxlength: 20,
       trim: true
@@ -19,17 +19,17 @@ const userSchema = new Schema(
 
     email: {
       type: String,
-      unique: true,
+      unique: [true, 'Debe introducir un email obligatoriamente'],
       required: true,
     },
     phone: {
       type: Number,
-      required: true,
+      required: [true, 'Debe introducir un teléfono obligatoriamente'],
     },
 
     password: {
       type: String,
-      required: true,
+      required: [true, 'Debe introducir una contraseña obligatoriamente'],
     },
 
     address: {
@@ -37,28 +37,28 @@ const userSchema = new Schema(
       street: {
         name: {
           type: String,
-          required: true
+          required: [true, 'Debe introducir una calle obligatoriamente'],
         },
 
         number: {
           type: Number,
-          required: true
+          required: [true, 'Debe introducir un número obligatoriamente'],
         },
       },
 
       postCode: {
         type: Number,
-        required: true
+        required: [true, 'Debe introducir un código postal obligatoriamente'],
       },
 
       city: {
         type: String,
-        required: true
+        required: [true, 'Debe introducir una ciudad obligatoriamente'],
       },
 
       country: {
         type: String,
-        required: true,
+        required: [true, 'Debe introducir un pais obligatoriamente'],
         default: 'Spain'
       }
     },
