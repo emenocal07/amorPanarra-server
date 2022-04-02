@@ -67,7 +67,6 @@ const userSchema = new Schema(
       type: String,
       enum: ['ADMIN', 'USER'],
       default: 'USER',
-      required: true,
     },
 
     productsCart: [
